@@ -1,16 +1,17 @@
 import streamlit as st
-import requests
+import functions
+
+api = "kUMVV5bF43mbXI6kIRbPMiEhFcjyEABHaSBQ0HCS"
+url = f"https://api.nasa.gov/planetary/apod?apikey={api}"
+image_of_the_day = "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Cat_August_2010-4.jpg/2560px-Cat_August_2010-4.jpg"
 
 title = st.title("title")
 
-url = "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/" \
-      "Orange_tabby_cat_sitting_on_fallen_leaves-Hisashi-01A.jpg/1280px-" \
-      "Orange_tabby_cat_sitting_on_fallen_leaves-Hisashi-01A.jpg"
-image_bites = requests.get(url)
+data = functions.download_data(url)
+# picture_url = data["url"]
 
-with open("image.jpg", "wb") as file:
-    file.write(image_bites.content)
+# data_frame = functions.extract_data()
 
-image = st.image("image.jpg")
+# image = st.image("image.jpg")
 
 description = st.text("sample description for now it is a string only")
